@@ -19,7 +19,8 @@ public class Email {
         this.firstName = setFirstName();
         this.lastName = setLastName();
         this.department = setDepartment();
-        this.password = randomPassword(defaultPasswordLenght);
+        //this.password = randomPassword(defaultPasswordLenght);
+        this.password = PasswordGenerator.generatePassword();
         verifyChangePassword();
         this.email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@" + department + "." + companySuffix;
     }
@@ -73,6 +74,10 @@ public class Email {
             }
         }
     }
+
+    private static final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
+
+    private static final Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
 
     //Generate a random password
     private String randomPassword(int length) {
