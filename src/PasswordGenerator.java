@@ -6,7 +6,7 @@ public class PasswordGenerator {
     private static final String lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
     private static final String uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final String digits = "0123456789";
-    private static final String specialChars = "!@#&()";
+    private static final String specialChars = "!@#&–:;',?/*~+=<>";
     private static final int passwordLength = 10;
 
 
@@ -38,6 +38,8 @@ public class PasswordGenerator {
         for (char c : charsList) {
             password.append(c);
         }
+
+        System.out.println("Your password has been generated: " + password);
 
         return password.toString();
     }

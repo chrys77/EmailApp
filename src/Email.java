@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class Email {
 
@@ -19,9 +18,7 @@ public class Email {
         this.firstName = setFirstName();
         this.lastName = setLastName();
         this.department = setDepartment();
-        //this.password = randomPassword(defaultPasswordLenght);
         this.password = PasswordGenerator.generatePassword();
-        verifyChangePassword();
         this.email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@" + department + "." + companySuffix;
     }
 
@@ -75,44 +72,27 @@ public class Email {
         }
     }
 
-    private static final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
-
-    private static final Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
-
-    //Generate a random password
-    private String randomPassword(int length) {
-        String passwordSet = "ABCDEFGHIJKLMNOPQRSTUVXYZ1234567890!@#$%^&*()";
-        char[] password = new char[length];
-        for (int i = 0; i < length; i++) {
-            int rand = (int) (Math.random() * passwordSet.length());
-            password[i] = passwordSet.charAt(rand);
-        }
-        String generatedPassword = new String(password);
-        System.out.println("Your password has been generated: " + generatedPassword);
-        return generatedPassword;
-    }
-
     //Set the mailbox capacity
-    public void setMailboxCapacity(int capacity) {
-        this.mailboxCapacity = capacity;
-    }
-
-    //Set the alternate email
-    public void setAlternateEmail(String altEmail) {
-        this.alternateEmail = altEmail;
-    }
-
-    public int getMailboxCapacity() {
-        return mailboxCapacity;
-    }
-
-    public String getAlternateEmail() {
-        return alternateEmail;
-    }
-
-    public String getPassword() {
-        return password;
-    }
+//    public void setMailboxCapacity(int capacity) {
+//        this.mailboxCapacity = capacity;
+//    }
+//
+//    //Set the alternate email
+//    public void setAlternateEmail(String altEmail) {
+//        this.alternateEmail = altEmail;
+//    }
+//
+//    public int getMailboxCapacity() {
+//        return mailboxCapacity;
+//    }
+//
+//    public String getAlternateEmail() {
+//        return alternateEmail;
+//    }
+//
+//    public String getPassword() {
+//        return password;
+//    }
 
     public String showInfo() {
         return "\nYour email has been created." +
@@ -123,36 +103,10 @@ public class Email {
     }
 
     //Check if you want to change the password
-    public void verifyChangePassword() {
-        while (true) {
-            System.out.println("Do you want to change your password? (y / n)");
-            String answer = sc.nextLine();
-            if (answer.equalsIgnoreCase("n")) {
-                System.out.println("The password will not be changed");
-                break;
-            } else if (answer.equalsIgnoreCase("y")) {
-                System.out.println("Enter the new password: ");
-                changePassword(sc.nextLine());
-                break;
-            } else {
-                System.out.println("You did not enter a correct answer");
-            }
-
-        }
+    public void changePassword(String password) {
+        ChangePassword.verifyChangePassword();
+        this.password = password;
     }
-
-    //Change password
-    private void changePassword(String password) {
-        if (password.length() < 8) {
-            System.out.println("The password must contain at least 8 characters. Try again!");
-            changePassword(sc.nextLine());
-        } else {
-            this.password = password;
-            System.out.println("The new password is: " + password);
-        }
-    }
-
-
 }
 
 
