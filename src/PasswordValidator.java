@@ -14,11 +14,11 @@ public class PasswordValidator {
         Matcher lowercaseMatcher = lowercasePattern.matcher(password);
         boolean containsLowercase = lowercaseMatcher.find();
 
-        Pattern digitPattern = Pattern.compile("0123456789");
+        Pattern digitPattern = Pattern.compile("[0-9]");
         Matcher digitMatcher = digitPattern.matcher(password);
         boolean containsDigit = digitMatcher.find();
 
-        Pattern specialCharPattern = Pattern.compile("!@#&–:;',?/*~+=<>");
+        Pattern specialCharPattern = Pattern.compile("[!@#&–:;',?/*~+=<>]");
         Matcher specialCharMatcher = specialCharPattern.matcher(password);
         boolean containsSpecialChar = specialCharMatcher.find();
 
