@@ -25,11 +25,9 @@ public class EmailService {
 
     public void changeAlternateEmail() {
         System.out.println("Enter the alternate email");
-        while (true) {
-            String newAlternateEmail = sc.nextLine();
-            if (CheckAlternateEmail.checkAlternateEmail(newAlternateEmail)) {
-                EmailRepository.insertNewAlternateEmailInDatabase(newAlternateEmail);
-            }
+        String newAlternateEmail = sc.nextLine();
+        if (CheckAlternateEmail.checkAlternateEmail(newAlternateEmail)) {
+            EmailRepository.insertNewAlternateEmailInDatabase(newAlternateEmail);
         }
     }
 

@@ -39,8 +39,6 @@ public class PasswordGenerator {
             password.append(c);
         }
 
-        System.out.println("Your password has been generated: " + password);
-
         return password.toString();
     }
 

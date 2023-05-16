@@ -5,14 +5,14 @@ public class EmailRepository {
 
     static Scanner sc = new Scanner(System.in);
 
-    public static boolean insertEmailInDatabase(String firstName, String lastName, String department, String password,
-                                                String companyEmail, int mailBoxCapacity, String alternateEmail) {
+    public static boolean insertEmailInDatabase(String firstName, String lastName, String department, String companyEmail,
+                                                String password, int mailBoxCapacity, String alternateEmail) {
         Connection c = ConnectionSingleton.getInstance().getConnection();
         try {
             Statement st = c.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
             String template = "INSERT INTO companyEmail (first_name, last_name, department, company_email, email_password, " +
                     "mailbox_capacity, alternate_email) VALUES ('%s', '%s', '%s', '%s', '%s', %d, '%s')";
-            int affectedRows = st.executeUpdate(String.format(template, firstName, lastName, department, password, companyEmail, mailBoxCapacity, alternateEmail));
+            int affectedRows = st.executeUpdate(String.format(template, firstName, lastName, department, companyEmail, password, mailBoxCapacity, alternateEmail));
             System.out.println("\nYour email has been created." +
                     "\nDisplay Name: " + firstName + " " + lastName +
                     "\nCompany Email: " + companyEmail +
@@ -114,7 +114,7 @@ public class EmailRepository {
             if (affectedRows > 0) {
                 System.out.println("The alternate email has been changed");
             } else {
-                System.out.println("The alternate email has not been changed");
+                System.out.println("The alternate email has not been changed. Try again!");
             }
             return affectedRows > 0;
         } catch (SQLException e) {
